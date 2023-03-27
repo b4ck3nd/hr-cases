@@ -20,6 +20,6 @@ public interface ProductService {
 
     List<ProductResponseDto> findProductByProductNameContaining(String name);
 
-
+    ProductResponseDto findById(long id);
 
 }

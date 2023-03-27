@@ -42,7 +42,7 @@ public class SellerController {
 
     @GetMapping("/{id}/products")
     public ResponseEntity<List<ProductResponseDto>> findProductsBySellerId(@PathVariable long id) {
-        return new ResponseEntity<>(sellerService.findProductBySellerId(),HttpStatus.OK);
+        return new ResponseEntity<>(sellerService.findProductBySellerId(id),HttpStatus.OK);
     }
 
 }

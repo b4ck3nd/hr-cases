@@ -99,6 +99,16 @@ public class ProductServiceImpl implements ProductService {
         return dtos;
     }
 
+    @Override
+    public ProductResponseDto findById(long id) {
+        if (productRepository.findById(id).isPresent()) {
+            return mapper.map(productRepository.findById(id).get(),ProductResponseDto.class);
+        }
+        else {
+            throw new UndefinedException("urun bulunamadi");
+        }
+    }
+
     private Product updateProductByProductId(Product oldProduct,Product temp) {
         temp.setProductName(oldProduct.getProductName());
         temp.setProductDescription(oldProduct.getProductDescription());
