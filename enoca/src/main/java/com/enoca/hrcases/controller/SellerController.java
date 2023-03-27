@@ -1,6 +1,7 @@
 package com.enoca.hrcases.controller;
 
 
+import com.enoca.hrcases.dto.product.ProductResponseDto;
 import com.enoca.hrcases.dto.seller.SellerCreateRequestDto;
 import com.enoca.hrcases.dto.seller.SellerResponseDto;
 import com.enoca.hrcases.dto.seller.SellerUpdateDto;
@@ -37,6 +38,11 @@ public class SellerController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<SellerResponseDto> deleteSellerById(@PathVariable long id) {
         return new ResponseEntity<>(sellerService.deletedById(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/products")
+    public ResponseEntity<List<ProductResponseDto>> findProductsBySellerId(@PathVariable long id) {
+        return new ResponseEntity<>(sellerService.findProductBySellerId(),HttpStatus.OK);
     }
 
 }

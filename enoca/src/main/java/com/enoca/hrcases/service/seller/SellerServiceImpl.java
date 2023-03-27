@@ -1,10 +1,12 @@
 package com.enoca.hrcases.service.seller;
 
 
+import com.enoca.hrcases.dto.product.ProductResponseDto;
 import com.enoca.hrcases.dto.seller.SellerCreateRequestDto;
 import com.enoca.hrcases.dto.seller.SellerResponseDto;
 import com.enoca.hrcases.dto.seller.SellerUpdateDto;
 import com.enoca.hrcases.exception.UndefinedException;
+import com.enoca.hrcases.model.Product;
 import com.enoca.hrcases.model.Seller;
 import com.enoca.hrcases.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;
@@ -74,6 +76,22 @@ public class SellerServiceImpl implements SellerService{
             Seller seller = updateSellerBySellerId(oldSeller, map);
             sellerRepository.save(seller);
             return mapper.map(seller,SellerResponseDto.class);
+        }
+        else {
+            throw new UndefinedException("satici bulunamadi");
+        }
+    }
+
+    @Override
+    public List<ProductResponseDto> findProductBySellerId(long id) {
+        if (sellerRepository.findById(id).isPresent()) {
+            List<ProductResponseDto> dtos=new ArrayList<>();
+            List<Product> products = sellerRepository.findById(id).get().getProducts();
+            for (Product product : products) {
+                ProductResponseDto map = mapper.map(product, ProductResponseDto.class);
+                dtos.add(map);
+            }
+            return dtos;
         }
         else {
             throw new UndefinedException("satici bulunamadi");
