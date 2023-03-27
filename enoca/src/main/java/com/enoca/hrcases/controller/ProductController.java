@@ -39,5 +39,10 @@ public class ProductController {
         return new ResponseEntity<>(productService.deleteProductById(id),HttpStatus.OK);
     }
 
+    @GetMapping("/search{term}")
+    public ResponseEntity<List<ProductResponseDto>> findProductByProductNameContaining(@PathVariable String term) {
+        return new ResponseEntity<>(productService.findProductByProductNameContaining(term),HttpStatus.OK);
+    }
+
 
 }

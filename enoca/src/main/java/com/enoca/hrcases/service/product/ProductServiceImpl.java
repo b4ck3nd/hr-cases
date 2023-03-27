@@ -88,6 +88,17 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    @Override
+    public List<ProductResponseDto> findProductByProductNameContaining(String name) {
+        List<ProductResponseDto> dtos=new ArrayList<>();
+        for (Product product : productRepository.findByProductNameContaining(name)) {
+            ProductResponseDto map = mapper.map(product, ProductResponseDto.class);
+            dtos.add(map);
+        }
+
+        return dtos;
+    }
+
     private Product updateProductByProductId(Product oldProduct,Product temp) {
         temp.setProductName(oldProduct.getProductName());
         temp.setProductDescription(oldProduct.getProductDescription());

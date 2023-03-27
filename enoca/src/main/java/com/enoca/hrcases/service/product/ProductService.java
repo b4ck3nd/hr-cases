@@ -18,5 +18,8 @@ public interface ProductService {
 
     ProductResponseDto addProduct(ProductCreateRequestDto dto);
 
+    List<ProductResponseDto> findProductByProductNameContaining(String name);
+
+
 
 }
