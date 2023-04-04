@@ -17,7 +17,7 @@ public class AuthServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
     @Override
-    public UserLoginResponseDto login(LoginRequestDto loginRequest) {
+    public String login(LoginRequestDto loginRequest) {
         Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword()));
         UserPrincipal userPrincipal =(UserPrincipal) authentication.getPrincipal();
         String jwt=jwtProvider.generateToken(userPrincipal);
@@ -27,6 +27,6 @@ public class AuthServiceImpl implements AuthenticationService {
         dto.setUsername(user.getUsername());
         dto.setPassword(user.getPassword());
 
-        return dto;
+        return jwt;
     }
 }

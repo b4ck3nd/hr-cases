@@ -5,5 +5,5 @@ import com.enoca.hrcases.dto.user.UserLoginResponseDto;
 import com.enoca.hrcases.model.User;
 
 public interface AuthenticationService {
-    UserLoginResponseDto login(LoginRequestDto loginRequest);
+    String login(LoginRequestDto loginRequest);
 }
