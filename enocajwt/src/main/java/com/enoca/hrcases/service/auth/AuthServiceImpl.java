@@ -1,6 +1,7 @@
 package com.enoca.hrcases.service.auth;
 
-import com.enoca.hrcases.dto.login.LoginRequestDto;
+import com.enoca.hrcases.dto.auth.LoginRequestDto;
+import com.enoca.hrcases.dto.auth.RegisterRequestDto;
 import com.enoca.hrcases.dto.user.UserLoginResponseDto;
 import com.enoca.hrcases.model.User;
 import com.enoca.hrcases.security.UserPrincipal;
@@ -28,5 +29,13 @@ public class AuthServiceImpl implements AuthenticationService {
         dto.setPassword(user.getPassword());
 
         return jwt;
+    }
+
+    @Override
+    public String register(RegisterRequestDto dto) {
+        Authentication authentication= authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUsername(),dto.getPassword()));
+        UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
+        String token= jwtProvider.generateToken(principal);
+        return token;
     }
 }

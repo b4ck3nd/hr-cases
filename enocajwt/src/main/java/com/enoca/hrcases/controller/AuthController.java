@@ -1,8 +1,7 @@
 package com.enoca.hrcases.controller;
 
 
-import com.enoca.hrcases.dto.login.LoginRequestDto;
-import com.enoca.hrcases.model.User;
+import com.enoca.hrcases.dto.auth.LoginRequestDto;
 import com.enoca.hrcases.service.auth.AuthenticationService;
 import com.enoca.hrcases.service.user.UserService;
 import lombok.RequiredArgsConstructor;

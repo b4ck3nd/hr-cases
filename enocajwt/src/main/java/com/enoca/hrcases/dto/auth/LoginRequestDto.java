@@ -1,4 +1,4 @@
-package com.enoca.hrcases.dto.login;
+package com.enoca.hrcases.dto.auth;
 
 
 import lombok.Data;

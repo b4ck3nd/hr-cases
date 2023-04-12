@@ -22,6 +22,7 @@ import java.util.Set;
     transient private User user;
     private Set<GrantedAuthority> authorities;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
